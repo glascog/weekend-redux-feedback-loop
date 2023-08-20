@@ -1,9 +1,29 @@
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import '../App/App.css';
 import Header from '../Header/Header';
+import {useSelector, useDispatch} from 'react-redux';
+import { useState } from 'react';
 
 
 function FeelingView() {
+    const dispatch = useDispatch();
+    const [feeling, setFeeling] = useState('');
+    
+    // Send feeling data to store
+    const handleFeeling = (event) => {
+        event.preventDefault();
+        dispatch({
+            type: 'ADD_FEEDBACK',
+            payload: feeling
+        })
+       console.log('feeling', feeling)
+    }
+
+    const handleFeelingChange = (event) => {
+        setFeeling(event.target.value);
+    }
+
+
     return (
        <>
        <Header />
@@ -11,11 +31,15 @@ function FeelingView() {
             
             <form>
                 <label>Feeling? </label>
-                <input type="number" id="feeling" min="1" max="5" />
+                <input type="number"                        
+                        min="1" 
+                        max="5" 
+                        onChange={handleFeelingChange}
+                />
             </form>
             
             <Link to="/understanding">
-                <button id="next">Next</button>
+                <button id="next" onClick={handleFeeling}>Next</button>
             </Link>
        </> 
     )

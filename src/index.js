@@ -9,15 +9,19 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 // import logger from 'redux-logger';
 
 // reducer for all feedback data
-const feedbackInfo = (state = [], action) => {
-    // TODO: save all feedback info from the server
-
+const feedbackInfo = (state = [], 
+                                action) => {
+      console.log('in feedbackInfo:', action)                              
+    if(action.type === 'ADD_FEEDBACK') {
+        return [...state, action.payload]
+    }
+    return state
 }
 
 // The store
 const storeInstance = createStore(
     combineReducers({
-
+        feedbackInfo
     }),
     applyMiddleware(
         // logger
