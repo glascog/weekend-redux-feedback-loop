@@ -9,9 +9,9 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 // import logger from 'redux-logger';
 
 // reducer for all feedback data
-const feedbackInfo = (state = [], 
-                                action) => {
-      console.log('in feedbackInfo:', action)                              
+const feedbackInfo = (state = [], action) => {
+      console.log('in feedbackInfo, action:', action)
+      console.log('in feedbackInfo, state:', state)                              
     if(action.type === 'ADD_FEEDBACK') {
         return [...state, action.payload]
     }

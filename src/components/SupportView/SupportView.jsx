@@ -1,9 +1,32 @@
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import '../App/App.css';
 import Header from '../Header/Header';
+import {useSelector, useDispatch} from 'react-redux';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import React from 'react';
 
-
+// Collect support data from input and dispatch
 function SupportView() {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const [support, setSupport] = useState('');
+
+    // Send support data to reducer
+    const handleSupport = () => {
+        if(support !== '') {
+            dispatch({
+                type: 'ADD_FEEDBACK',
+                payload: support
+            });
+            console.log('support rating:', support)
+            history.push('/comment') // navigate to next page only if support field is not empty
+        } else {
+            alert('Please rate how well supported you feel');
+        }
+
+    }
+
     return (
        <>
        <Header />
@@ -11,12 +34,16 @@ function SupportView() {
             
             <form>
                 <label>Support? </label>
-                <input type="number" id="support" min="1" max="5" />
+                <input type="number" 
+                        value={support} 
+                        min="1" 
+                        max="5"
+                        onChange={(event) => setSupport(event.target.value)} 
+                />
             </form>
             
-            <Link to="/comment">
-                <button id="next">Next</button>
-            </Link>
+                <button id="next" onClick={handleSupport}>Next</button>
+            
        </> 
     )
 }

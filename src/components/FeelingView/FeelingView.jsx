@@ -3,25 +3,28 @@ import '../App/App.css';
 import Header from '../Header/Header';
 import {useSelector, useDispatch} from 'react-redux';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import React from 'react';
 
-
+// Collect feeling data from input and dispatch 
 function FeelingView() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [feeling, setFeeling] = useState('');
     
-    // Send feeling data to store
-    const handleFeeling = (event) => {
-        event.preventDefault();
+    // Send feeling data to reducer
+    const handleFeeling = () => {
+       if(feeling !== '') {
         dispatch({
             type: 'ADD_FEEDBACK',
             payload: feeling
-        })
-       console.log('feeling', feeling)
+        });
+        console.log('feeling rating:', feeling)
+        history.push('/understanding') //navigate to next page only if feeling is not empty
+    } else {
+        alert('Please rate how you are feeling');
     }
-
-    const handleFeelingChange = (event) => {
-        setFeeling(event.target.value);
-    }
+}
 
 
     return (
@@ -31,16 +34,15 @@ function FeelingView() {
             
             <form>
                 <label>Feeling? </label>
-                <input type="number"                        
+                <input type="number"  
+                        value={feeling}                      
                         min="1" 
-                        max="5" 
-                        onChange={handleFeelingChange}
+                        max="5"
+                        onChange={(event) => setFeeling(event.target.value)}    
                 />
             </form>
-            
-            <Link to="/understanding">
                 <button id="next" onClick={handleFeeling}>Next</button>
-            </Link>
+                {/* disabled={!feeling} */}
        </> 
     )
 }
