@@ -4,7 +4,7 @@ import './App.css';
 import {HashRouter as Router, Route, Link} from 'react-router-dom';
 
 // import components
-import Header from '../Header/Header';
+// import Header from '../Header/Header';
 import FeelingView from '../FeelingView/FeelingView';
 import UnderstandingView from '../UnderstandingView/UnderstandingView';
 import SupportView from '../SupportView/SupportView';

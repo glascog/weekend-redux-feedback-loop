@@ -9,3 +9,5 @@ const pool = require('../modules/pool');
 
 
 // POST feedback to DB
+
+module.exports = router;

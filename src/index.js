@@ -6,9 +6,13 @@ import App from './components/App/App';
 // Redux stuff
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 
-// TODO: save all feedback info from the server
+// reducer for all feedback data
+const feedbackInfo = (state = [], action) => {
+    // TODO: save all feedback info from the server
+
+}
 
 // The store
 const storeInstance = createStore(
@@ -16,7 +20,7 @@ const storeInstance = createStore(
 
     }),
     applyMiddleware(
-        logger
+        // logger
     )
 )
 

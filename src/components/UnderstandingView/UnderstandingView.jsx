@@ -1,6 +1,7 @@
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import '../App/App.css';
 import Header from '../Header/Header';
+import React from 'react';
 
 function UnderstandingView() {
     return (
