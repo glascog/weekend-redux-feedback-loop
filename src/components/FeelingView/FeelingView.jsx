@@ -1,14 +1,16 @@
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import '../App/App.css';
+import Header from '../Header/Header';
 
 
 function FeelingView() {
     return (
        <>
+       <Header />
        <h1>How are you feeling today?</h1>
             
             <form>
-                <label for="feeling">Feeling? </label>
+                <label>Feeling? </label>
                 <input type="number" id="feeling" min="1" max="5" />
             </form>
             
