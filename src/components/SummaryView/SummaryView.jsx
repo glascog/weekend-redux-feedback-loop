@@ -27,14 +27,12 @@ const handleSubmit = (event) => {
 
    axios.post('/feedback', newFeedback)
     .then(response => {
-        console.log('data successfully submitted:', newFeedback);
-        console.log('response:', response);
-        history.push('/submission') // navigate to successful submission page
-    }) 
-    .catch(error => {
+        console.log('response:', response)
+    }).catch(error => {
         console.error('Error submitting new feedback, /feedback:', error)
-    });
-   
+    })
+    history.push('/submission') // navigate to successful submission
+} 
 
     return (
         <>
@@ -44,14 +42,14 @@ const handleSubmit = (event) => {
             <h3>Support: {feedbackInfo[2]}</h3>
             <h3>Comments: {feedbackInfo[3]}</h3>
 
-            
+            <Link to="/submission">
                 <button id="submit"
                         onClick={handleSubmit}>
                         SUBMIT
                 </button>
-           
+            </Link>
         </>
     )
-}}
+}
 
 export default SummaryView;
