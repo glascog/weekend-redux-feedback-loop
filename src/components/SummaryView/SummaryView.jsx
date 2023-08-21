@@ -42,12 +42,12 @@ const handleSubmit = (event) => {
             <h3>Support: {feedbackInfo[2]}</h3>
             <h3>Comments: {feedbackInfo[3]}</h3>
 
-            <Link to="/submission">
+            
                 <button id="submit"
                         onClick={handleSubmit}>
                         SUBMIT
                 </button>
-            </Link>
+          
         </>
     )
 }
