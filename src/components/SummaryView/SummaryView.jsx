@@ -3,12 +3,16 @@ import { useState } from 'react';
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 // View all ratings and comments that have been entered
 function SummaryView() {
 
 // access feedbackInfo reducer (array of feedback)
 const feedbackInfo = useSelector(store => store.feedbackInfo)
+const history = useHistory();
+
 
 // Send feedbackInfo to DB
 const handleSubmit = (event) => {
@@ -24,10 +28,11 @@ const handleSubmit = (event) => {
    axios.post('/feedback', newFeedback);
    console.log('data successfully submitted:', newFeedback)
     .then(response => {
-
+        console.log('response:', response)
     }).catch(error => {
         console.error('Error submitting new feedback, /feedback:', error)
     })
+    history.push('/submission') // navigate to successful submission page
 } 
 
     return (
@@ -38,12 +43,12 @@ const handleSubmit = (event) => {
             <h3>Support: {feedbackInfo[2]}</h3>
             <h3>Comments: {feedbackInfo[3]}</h3>
 
-            <Link to="/submission">
+            
                 <button id="submit"
                         onClick={handleSubmit}>
                         SUBMIT
                 </button>
-            </Link>
+           
         </>
     )
 }
