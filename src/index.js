@@ -8,15 +8,21 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 // import logger from 'redux-logger';
 
+const initialState = [];
+
 // reducer for all feedback data
-const feedbackInfo = (state = [], action) => {
-      console.log('in feedbackInfo, action:', action)
-      console.log('in feedbackInfo, state:', state)                              
+const feedbackInfo = (state = [], action) => {                  
     if(action.type === 'ADD_FEEDBACK') {
         return [...state, action.payload]
+    } else if (action.type === 'RESET_FEEDBACK') {
+        return state = initialState
     }
-    return state
+    //   console.log('in feedbackInfo, action:', action)
+    //   console.log('in feedbackInfo, state:', state)      
+   return state
 }
+
+
 
 // The store
 const storeInstance = createStore(
